@@ -5,26 +5,26 @@ from config import ROOT_NAME
 import json
 from App.models import AlchemyJsonEncoder
 
-def add_camera(address, action_type, user_name, password, statues, kind, brand, model, name):
-    camera = Camera.query.filter_by(address=address).first()
+def add_camera(sn, address, action_type, user_name, password, statues, kind, brand, model, name):
+    camera = Camera.query.filter_by(sn=sn).first()
     if not camera:
-        camera = Camera(address, action_type, user_name,
+        camera = Camera(sn, address, action_type, user_name,
                         password, statues, kind, brand, model, name)
         db.session.add(camera)
         db.session.commit()
         return 'success'
-    return 'address exist', 401
+    return 'sn exist', 401
 
 
-def delete_camera(address):
-    camera = Camera.query.filter_by(address=address).first()
+def delete_camera(sn):
+    camera = Camera.query.filter_by(sn=sn).first()
     if camera:
         for per in camera.permissions:
             db.session.delete(per)
         db.session.delete(camera)
         db.session.commit()
         return 'success'
-    return 'address not exist', 401
+    return 'sn not exist', 401
 
 
 def list_camera():

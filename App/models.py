@@ -36,6 +36,7 @@ class AlchemyJsonEncoder(json.JSONEncoder):
 
 
 class Camera(db.Model, base):
+    sn = db.Column(db.String(255)) #SN号
     address = db.Column(db.String(255))  # 摄像头地址
     action_type = db.Column(db.String(255))  # SDK标识
     user_name = db.Column(db.String(255))  # 摄像头登录名
@@ -46,7 +47,8 @@ class Camera(db.Model, base):
     model = db.Column(db.String(255))  # 型号
     name = db.Column(db.String(255))
 
-    def __init__(self, address, action_type, user_name, password, statues=unknown, kind=unknown, brand=unknown, model=unknown, name=unknown):
+    def __init__(self, sn, address, action_type, user_name, password, statues=unknown, kind=unknown, brand=unknown, model=unknown, name=unknown):
+        self.sn = sn
         self.address = address
         self.action_type = action_type
         self.user_name = user_name

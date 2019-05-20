@@ -26,11 +26,11 @@ def login_user(user_name, password):
         user.key = key
         js = json.dumps([{'user_name': user_name, 'password': password}])
         crypt = PrpCrypt(key)
-        token = crypt.encrypt(js)
+        token = crypt.encrypt(js).decode(encoding='utf-8')
         user.token = token
         db.session.add(user)
         db.session.commit()
-        return token
+        return json.dumps({"token": token})
     return 'user_name or password error', 401
 
 
@@ -67,6 +67,7 @@ def delete_user(user_name):
         db.session.commit()
         return 'success'
     return 'user_name error', 401
+
 
 def list_user():
     users = User.query.all()
