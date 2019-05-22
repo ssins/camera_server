@@ -25,5 +25,21 @@ def init():
     return 'success'
 
 
+# def main(argv):
+#     try:
+#         opts, args = getopt.getopt(argv, 'dpe:', ['env='])
+#     except getopt.GetoptError:
+#         print 'server.py -e <dev or pro>'
+#         sys.exit(2)
+#     for opt, arg in opts:
+#       if opt == '-p':
+#          print 'test.py -i <inputfile> -o <outputfile>'
+#          sys.exit()
+#       elif opt in ("-i", "--ifile"):
+#          inputfile = arg
+#       elif opt in ("-o", "--ofile"):
+#          outputfile = arg
+
 if __name__ == '__main__':
+    # main(sys.argv[1:])
     app.run(host=FLASK_HOST, port=FLASK_PORT, debug=FLASK_DEBUG)
